@@ -11,4 +11,6 @@
 
 @interface LRCViewController : UIViewController
 
+@property (nonatomic, strong) NSArray *usersArray;
+
 @end

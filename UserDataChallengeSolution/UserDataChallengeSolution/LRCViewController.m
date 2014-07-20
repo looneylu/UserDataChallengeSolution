@@ -20,6 +20,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.usersArray = @[[UserData users]];
+    
+//    NSLog(@"%@", self.usersArray);
 }
 
 - (void)didReceiveMemoryWarning
