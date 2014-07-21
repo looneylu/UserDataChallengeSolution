@@ -23,7 +23,7 @@
     
     self.usersArray = @[[UserData users]];
     
-//    NSLog(@"%@", self.usersArray);
+    NSLog(@"%@", self.usersArray);
 }
 
 - (void)didReceiveMemoryWarning
