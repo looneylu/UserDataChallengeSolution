@@ -10,7 +10,9 @@
 #import "UserData.h"
 
 
-@interface LRCViewController ()
+@interface LRCViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -21,15 +23,34 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.usersArray = @[[UserData users]];
+    self.usersArray = [UserData users];
     
-    NSLog(@"%@", self.usersArray);
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - Conform to Protocols
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    static NSString *cellIdentifier = @"userCell";
+    UITableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    NSDictionary *user = [self.usersArray objectAtIndex:indexPath.row];
+   
+    NSLog(@"%@", user);
+    
+    myCell.textLabel.text = @"test";
+    myCell.detailTextLabel.text = [user objectForKey:EMAIL];
+    myCell.imageView.image = [user objectForKey:PROFILE_PICTURE];
+    
+    return myCell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.usersArray count];
 }
 
 @end
